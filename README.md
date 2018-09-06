@@ -1,27 +1,19 @@
 # ProductApp
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.1.2.
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.1.2 for the purpose of demonstrating CRUD functionality for an online exam. <br>This API app partner of this project is the [Laravel-Product-App](https://github.com/michael-roewin/Laravel-Product-App)
+
+## Installation
+First thing to do is clone the project.<code>git clone https://github.com/michael-roewin/Angular-Product-App.git</code><br>
+Go to the project directory and install the Dependencies: <code>npm i</code><br> If you have a different URL for the [Laravel-Product-App](https://github.com/michael-roewin/Laravel-Product-App)
+ API. You need to set this value in the apiUrl variable inside src/app/constant.ts 
+
+<b>Run The Application! :)</b>
 
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
 ## Build
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
