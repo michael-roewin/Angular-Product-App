@@ -1,0 +1,39 @@
+<div class="row">
+    <div class="col-md-6">
+        <h2>{{ product.id ? 'Edit' : 'New'}} Product</h2>
+    </div>
+    <div class="col-md-6 text-right">
+        <button type="button" class="btn btn-secondary" (click)="logout()">Log Out</button>
+    </div>
+</div>
+<hr>
+<div class="alert alert-{{ formAlert.type }}" *ngIf="formAlert.msg">
+    <span [innerHTML]="formAlert.msg"></span>
+</div>
+<div class="text-right">
+    <a routerLink="/products/" class="btn btn-secondary mb-3">Back to Product List</a>
+</div>
+<form (ngSubmit)="saveProduct()" style="position: relative;">
+    <div class="ajax-loader" [ngClass]="{'d-block': showLoader, 'd-none': !showLoader}">
+        <div class="fa-3x">
+            <fa-icon [icon]="faCircleNotch" class="fa-spin" style="display: block;"></fa-icon>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="">Product Name</label>
+        <input type="text" class="form-control" name="name" id="name" [(ngModel)]="product.name" placeholder="Product Name" />
+    </div>
+    <div class="form-group">
+        <label for="">Product Description</label>
+        <textarea type="text" class="form-control" name="description" id="description" [(ngModel)]="product.description" rows="7" placeholder="Product Description"></textarea>
+    </div>
+    <div class="form-group">
+        <label for="">Product Price</label>
+        <input type="text" class="form-control" name="price" id="price" [(ngModel)]="product.price" placeholder="Product Price" />
+    </div>
+    <div class="form-group">
+        <label for="">Products Available</label>
+        <input type="text" class="form-control" name="available" id="available" [(ngModel)]="product.available" placeholder="Products Available" />
+    </div>
+    <button type="submit" class="btn btn-secondary mt-2">{{ product.id ? 'Update' : 'Create' }} Product</button>
+</form>  

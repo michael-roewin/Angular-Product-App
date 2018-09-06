@@ -1,0 +1,55 @@
+<div class="row">
+    <div class="col-md-6">
+        <h2>Product List</h2>
+    </div>
+    <div class="col-md-6 text-right">
+        <button type="button" class="btn btn-secondary" (click)="logout()" >Log Out</button>
+    </div>
+</div>
+<hr>
+<div class="alert alert-{{ formAlert.type }}" *ngIf="formAlert.msg">
+    <span [innerHTML]="formAlert.msg"></span>
+</div>
+<a routerLink="/product/new" class="btn btn-secondary mb-3 float-left">Add Product</a>
+<div class="table-responsive" style="position: relative;">
+    <div class="ajax-loader" [ngClass]="{'d-block': showLoader, 'd-none': !showLoader}">
+        <div class="fa-3x">
+            <fa-icon [icon]="faCircleNotch" class="fa-spin" style="display: block;"></fa-icon>
+        </div>
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    <a href (click)="$event.preventDefault();sortProducts('name');">Name</a>&nbsp;
+                    <fa-icon [icon]="(productParams.order == 'ASC' ? faChevronUp : faChevronDown)" *ngIf="productParams.orderBy == 'name'"></fa-icon>
+                </th>
+                <th>
+                    <a href (click)="$event.preventDefault();sortProducts('description');">Description</a>&nbsp;
+                    <fa-icon [icon]="(productParams.order == 'ASC' ? faChevronUp : faChevronDown)" *ngIf="productParams.orderBy == 'description'"></fa-icon>
+                </th>
+                <th>
+                    <a href (click)="$event.preventDefault();sortProducts('price');">Price</a>&nbsp;
+                    <fa-icon [icon]="(productParams.order == 'ASC' ? faChevronUp : faChevronDown)" *ngIf="productParams.orderBy == 'price'"></fa-icon>
+                </th>
+                <th>
+                    <a href (click)="$event.preventDefault();sortProducts('available');">Available</a>&nbsp;
+                    <fa-icon [icon]="(productParams.order == 'ASC' ? faChevronUp : faChevronDown)" *ngIf="productParams.orderBy == 'available'"></fa-icon>
+                </th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let product of products">
+                <td>{{ product.name }}</td>
+                <td>{{ product.description }}</td>
+                <td>{{ product.price | currency:'$' }}</td>
+                <td>{{ product.available }}</td>
+                <td>
+                    <a routerLink="/product/{{ product.id }}" class="btn btn-secondary btn-sm">Edit</a>&nbsp;
+                    <button class="btn btn-danger btn-sm" (click)="deleteProduct(product.id)">Delete</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

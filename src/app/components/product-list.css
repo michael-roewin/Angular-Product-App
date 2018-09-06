@@ -1,0 +1,21 @@
+table a:not(.btn) {
+    color:#212529;
+}
+
+.ajax-loader {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.7);
+    z-index: 998;
+}
+
+.ajax-loader .ng-fa-icon {
+    position: absolute;
+    top: 48%;
+    left: 48%;
+    font-size: 30px;
+    color: 6c757d;
+}

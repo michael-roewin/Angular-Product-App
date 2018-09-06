@@ -1,0 +1,1 @@
+export const apiUrl = 'http://product-app.local/api';
