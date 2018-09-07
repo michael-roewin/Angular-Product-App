@@ -35,5 +35,12 @@
         <label for="">Products Available</label>
         <input type="text" class="form-control" name="available" id="available" [(ngModel)]="product.available" placeholder="Products Available" />
     </div>
+    <div class="form-group">
+        <label for="category">Category</label>
+        <select class="form-control" name="category_id" [(ngModel)]="product.category_id">
+            <option [ngValue]="null">Please Select</option>
+            <option *ngFor="let c of categories" [ngValue]="c.id" >{{c.name}}</option>
+        </select>
+    </div>
     <button type="submit" class="btn btn-secondary mt-2">{{ product.id ? 'Update' : 'Create' }} Product</button>
 </form>  

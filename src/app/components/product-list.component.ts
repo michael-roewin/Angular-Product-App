@@ -20,7 +20,7 @@ export class ProductList implements OnInit {
 
   showLoader = false;
   productParams = {
-    orderBy: 'name',
+    orderBy: 'products.name',
     order: 'ASC'
   }
 

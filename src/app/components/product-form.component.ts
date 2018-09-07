@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { CategoryService } from '../services/category.service';
 import { ProductService } from '../services/product.service';
 import { AuthService } from '../services/auth.service';
 import { Product } from '../product';
+import { Category } from '../category';
 import cloneDeep from 'lodash/cloneDeep';
 import { faCircleNotch } from '@fortawesome/free-solid-svg-icons';
 
@@ -15,6 +17,7 @@ import { faCircleNotch } from '@fortawesome/free-solid-svg-icons';
 export class ProductForm implements OnInit {
 
   product:Product;
+  categories: Array<Category>;
   faCircleNotch = faCircleNotch;
 
   formAlert = {
@@ -24,7 +27,7 @@ export class ProductForm implements OnInit {
 
   showLoader = false;
 
-  constructor(private _productService: ProductService, private _authService: AuthService, private route: ActivatedRoute, private _router: Router) {
+  constructor(private _productService: ProductService, private _categoryService: CategoryService, private _authService: AuthService, private route: ActivatedRoute, private _router: Router) {
 
   }
 
@@ -36,13 +39,36 @@ export class ProductForm implements OnInit {
       description: null,
       price: null,
       available: null,
-      stocks: null,
-    }
+      category_id: null,
+    };
 
     let productID = this.route.snapshot.params.id;
 
+    this.getCategories();
+
     if(productID)
       this.getProduct(productID);
+      
+  }
+
+  getCategories() {
+
+    let params = {
+      orderBy: 'name',
+      order: 'ASC',
+    };
+
+    this._categoryService.getCategories(params).subscribe(
+      (response) => {
+        this.categories = response.categories;
+      },
+      (response) => {
+        this.showLoader = false;
+      },
+      () => {
+        this.showLoader = false;
+      }
+    )
   }
 
   getProduct(productID) {
@@ -50,6 +76,11 @@ export class ProductForm implements OnInit {
     this._productService.getProduct(productID).subscribe(
       (response) => {
         this.product = response.product;
+        
+        if(this.product.category_id) {
+          let categoryID = this.product.category_id.toString();
+          this.product.category_id = parseInt(categoryID);
+        }
       },
       (response) => {
         this.showLoader = false;

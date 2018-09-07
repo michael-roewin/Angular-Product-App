@@ -21,8 +21,8 @@
         <thead>
             <tr>
                 <th>
-                    <a href (click)="$event.preventDefault();sortProducts('name');">Name</a>&nbsp;
-                    <fa-icon [icon]="(productParams.order == 'ASC' ? faChevronUp : faChevronDown)" *ngIf="productParams.orderBy == 'name'"></fa-icon>
+                    <a href (click)="$event.preventDefault();sortProducts('products.name');">Name</a>&nbsp;
+                    <fa-icon [icon]="(productParams.order == 'ASC' ? faChevronUp : faChevronDown)" *ngIf="productParams.orderBy == 'products.name'"></fa-icon>
                 </th>
                 <th>
                     <a href (click)="$event.preventDefault();sortProducts('description');">Description</a>&nbsp;
@@ -31,6 +31,10 @@
                 <th>
                     <a href (click)="$event.preventDefault();sortProducts('price');">Price</a>&nbsp;
                     <fa-icon [icon]="(productParams.order == 'ASC' ? faChevronUp : faChevronDown)" *ngIf="productParams.orderBy == 'price'"></fa-icon>
+                </th>
+                <th>
+                    <a href (click)="$event.preventDefault();sortProducts('categorypath');">Category Path</a>&nbsp;
+                    <fa-icon [icon]="(productParams.order == 'ASC' ? faChevronUp : faChevronDown)" *ngIf="productParams.orderBy == 'categorypath'"></fa-icon>
                 </th>
                 <th>
                     <a href (click)="$event.preventDefault();sortProducts('available');">Available</a>&nbsp;
@@ -44,6 +48,7 @@
                 <td>{{ product.name }}</td>
                 <td>{{ product.description }}</td>
                 <td>{{ product.price | currency:'$' }}</td>
+                <td>{{ product.categorypath }}</td>
                 <td>{{ product.available }}</td>
                 <td>
                     <a routerLink="/product/{{ product.id }}" class="btn btn-secondary btn-sm">Edit</a>&nbsp;

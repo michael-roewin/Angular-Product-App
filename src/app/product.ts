@@ -4,5 +4,5 @@ export class Product {
   description:string;
   price:number;
   available:boolean;
-  stocks:number;
+  category_id:number;
 }
